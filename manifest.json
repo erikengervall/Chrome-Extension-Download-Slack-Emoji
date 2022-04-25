@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+
+  "name": "Slack emoji click to download",
+  "description": "Downloads slack emojis on click",
+  "version": "1",
+
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["https://*/*"]
+    }
+  ]
+}
