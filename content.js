@@ -1,2 +1,36 @@
-const table = document.querySelector("[data-qa=customize_emoji_table]");
-console.log("***", table);
+function createClickHandler(url, filename) {
+  return function () {
+    console.log(`Downloading "${filename}" (${url})`);
+    chrome.extension.sendRequest({ url, filename });
+  };
+}
+
+const handlers = {};
+
+function attachClickListenersToVirtualListItems() {
+  const virtualListItems = document.getElementsByClassName(
+    "c-virtual_list__item"
+  );
+
+  for (const virtualListItem of virtualListItems) {
+    const url = virtualListItem.querySelector("img").getAttribute("src");
+    const extension = url.split(".").pop();
+    const emojiName = virtualListItem
+      .querySelector(".c-table_view_row_item_value b")
+      .innerText.trim()
+      .replaceAll(":", "");
+    const filename = `${emojiName}.${extension}`;
+    const handlerKey = url + "_noaa_" + filename;
+
+    if (!handlers[handlerKey]) {
+      handlers[handlerKey] = createClickHandler(url, filename);
+    }
+
+    virtualListItem.removeEventListener("click", handlers[handlerKey]);
+    virtualListItem.addEventListener("click", handlers[handlerKey]);
+  }
+}
+
+setInterval(() => {
+  attachClickListenersToVirtualListItems();
+}, 1000);

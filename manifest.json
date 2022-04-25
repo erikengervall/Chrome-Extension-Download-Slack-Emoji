@@ -1,10 +1,13 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
 
   "name": "Slack emoji click to download",
   "description": "Downloads slack emojis on click",
   "version": "1",
-
+  "permissions": ["downloads"],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "js": ["content.js"],
