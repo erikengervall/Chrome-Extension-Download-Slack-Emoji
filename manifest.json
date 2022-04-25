@@ -1,12 +1,11 @@
 {
-  "manifest_version": 2,
-
-  "name": "Slack emoji click to download",
-  "description": "Downloads slack emojis on click",
+  "manifest_version": 3,
+  "name": "One click emoji downloader for Slack",
+  "description": "Downloads slack emojis in one click",
   "version": "1",
   "permissions": ["downloads"],
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {

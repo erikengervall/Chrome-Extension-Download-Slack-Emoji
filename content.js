@@ -1,7 +1,7 @@
 function createClickHandler(url, filename) {
   return function () {
-    console.log(`Downloading "${filename}" (${url})`);
-    chrome.extension.sendRequest({ url, filename });
+    console.debug(`Downloading "${filename}" (${url})`);
+    chrome.runtime.sendMessage({ message: { url, filename } });
   };
 }
 
