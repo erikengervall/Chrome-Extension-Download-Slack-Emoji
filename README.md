@@ -1,5 +1,9 @@
 # Chrome-Extension-Download-Slack-Emoji
 
+## Promo GIF
+
+![](resources/promo%20video.gif)
+
 ## Docs
 
 - https://developer.chrome.com/docs/extensions/reference/downloads/#method-download
